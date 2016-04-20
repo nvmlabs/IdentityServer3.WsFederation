@@ -172,6 +172,11 @@ namespace IdentityServer3.WsFederation
                 message.AcrValues = new[] { result.Federation };
             }
             
+            if (!String.IsNullOrWhiteSpace(result.LoginHint))
+            {
+                message.LoginHint = result.LoginHint;
+            }
+
             var env = Request.GetOwinEnvironment();
             var url = env.CreateSignInRequest(message);
             
